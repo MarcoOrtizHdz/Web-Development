@@ -18,6 +18,7 @@ address {
 
 nav {
     margin-top: 40px;
+    display: flow-root;
     /*border-style: solid;
     border-color: #0070C0;
     border-radius: 5px;*/
@@ -64,6 +65,8 @@ p {
     padding-right: 15%;
 }
 
+/*
 #aboutMe {
     display: flow-root;
 }
+*/
