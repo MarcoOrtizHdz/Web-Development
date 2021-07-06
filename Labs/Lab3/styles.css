@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.logo > img {
+  width: 50px;
+  margin-top: 10px;
+}
+
+.menu {
+  display: none;
+}
+
+.hamburger {
+  background-color: grey;
+  margin: 3px;
+  text-align: right;
+}
+
+.product {
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 0 3px;
+  padding: 3px;
+}
+
+.social {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+}
+
