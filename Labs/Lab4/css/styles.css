@@ -85,3 +85,7 @@ fieldset{
   background-color:#2994DA;
   text-align: center;
 }
+
+label {
+  margin-left: 5px;
+}
