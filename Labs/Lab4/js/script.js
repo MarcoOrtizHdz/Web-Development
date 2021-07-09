@@ -78,10 +78,17 @@ function TodoDel() {
     */
 
     var todos = document.getElementsByName("todo");
-
+    /*
     todos.forEach(elemento => {
         if (elemento.checked){
             elemento.parentElement.remove();
         }
     })
+    */
+    for ( var i = 0 ; i < todos.length ; i++ ) {
+        if (todos[i].checked){
+            todos[i].parentElement.remove();
+            i--;
+        }
+    }
 }
