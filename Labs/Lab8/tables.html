@@ -56,7 +56,7 @@
       <footer class="footer mt-4">
         <div class="container">
           <p>Control Panel</p>
-          <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
+          <p><a href="" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
               Wait List</a>
         </div>
       </footer>
@@ -71,9 +71,11 @@
     $.get("/api/tables", function(data) {
       for (var i = 0; i < data.length; i++) {
         console.log(data[i]);
-        var listTablesItem = $("<li class='list-tables-item'>");
+        var listTablesItem = $("<li class='list-group-item mt-4'>");
 
-        listTablesItem.append($("<h2>").text("Name: " + data[i].name));
+        listTablesItem.append($("<h2>").text("Table #" + (i+1)));
+        listTablesItem.append($("<hr>"));
+        listTablesItem.append($("<h4>").text("Name: " + data[i].name));
         listTablesItem.append($("<h4>").text("Phone Number: " + data[i].phoneNumber));
         listTablesItem.append($("<h4>").text("Email: " + data[i].email));
         listTablesItem.append($("<h4>").text("Unique ID: " + data[i].uniqueID));
@@ -85,9 +87,11 @@
     $.get("/api/waitlist", function(data) {
       for (var i = 0; i < data.length; i++) {
         console.log(data[i]);
-        var listWaitItem = $("<li class='list-tables-item'>");
+        var listWaitItem = $("<li class='list-group-item mt-4'>");
 
-        listWaitItem.append($("<h2>").text("Name: " + data[i].name));
+        listWaitItem.append($("<h2>").text("Table #" + (i+1)));
+        listWaitItem.append($("<hr>"));
+        listWaitItem.append($("<h4>").text("Name: " + data[i].name));
         listWaitItem.append($("<h4>").text("Phone Number: " + data[i].phoneNumber));
         listWaitItem.append($("<h4>").text("Email: " + data[i].email));
         listWaitItem.append($("<h4>").text("Unique ID: " + data[i].uniqueID));
@@ -95,6 +99,15 @@
         $("#waitList").append(listWaitItem);
       }
     });
+
+    $("#clear").on("click", function(event) {
+      event.preventDefault();
+
+      if (confirm("Are you sure you want to clear the table list?")) {
+        $("#tableList").empty();
+        $("#waitList").empty();
+      } 
+    })
 
   </script>
 

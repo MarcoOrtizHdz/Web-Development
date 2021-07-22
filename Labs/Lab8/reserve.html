@@ -91,22 +91,24 @@
           uniqueID: $("#reserve-unique-id").val().trim()
         };
 
-        $.post("/api/tables", newReservation)
-          .then(function(data) {
-            console.log("reserve.html", data);
-            //alert("Making reservation...");
+        $.post("/api/tables", newReservation, function(data) {
+          //console.log("reserve.html", data);
 
-            $.get("/api/tables", function(tablesReserved) {
-              console.log(`Tables reserved list despues del post: ${tablesReserved.length}`);
-              if (tablesReserved.length <= 5) {
-                alert("Successful reservation");
-              }
-              else {
-                alert("All tables are reserved. You are on the waiting list.");
-              }
-            });
+          if (data) {
+            alert("Successful reservation");
+            console.log("reserve.html. Registered on Tables List.")
+          }
 
-          })
+          else {
+            alert("All tables are reserved. You are on the Wait List.");
+            console.log("reserve.html. Table List Full. Registered on Wait List.")
+          }
+
+          $("#reserve-name").val("");
+          $("#reserve-phone").val("");
+          $("#reserve-email").val("");
+          $("#reserve-unique-id").val("");
+        })
       })
     </script>
 

@@ -40,24 +40,30 @@ app.get("/api/waitlist", function(req, res) {
 
 // Create New Reservation - takes in JSON input
 app.post("/api/tables", function(req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
     var newReservation = req.body;
-    // Using a RegEx Pattern to remove spaces from newReservation
-    //newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
   
     console.log(newReservation);  
     if ( tables.length <= 4 ) {
         tables.push(newReservation);
-        //alert("Successful reservation");
+        res.send(true);
     }
     else {
         waitList.push(newReservation);
-        //alert("All tables are reserved. You are on the waiting list.");
+        res.send(false);
     }
-    
-    res.json(newReservation);
-  });
+});
+/*
+// Clear table
+app.post("/api/tables", function(req, res) {
+    for ( var i = 0; i < tables.length; i++ ) {
+        tables.pop();
+    }
+    for ( var i = 0 ; i < waitList.length; i++ ) {
+        waitList.pop();
+    }
+    console.log("Tables cleared");
+    res.send(true);
+});*/
 
 // Starts the server to begin listening
 // =============================================================
