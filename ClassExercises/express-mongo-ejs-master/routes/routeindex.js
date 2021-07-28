@@ -1,10 +1,27 @@
 const express = require('express');
 const app = express();
 const Task = require('../model/task');
+const User = require('../model/user');
+const verify = require('../middleware/verifyAccess');
 
+app.get('/login', function(req,res) {
+	res.render('login');
+});
+
+app.get('/register', function(req,res) {
+	res.render('register');
+});
+
+app.post('/addUser', async function(req,res) {
+	var user = new User(req.body);
+	user.password = user.encryptPassword(user.password);
+
+	await user.save();
+	res.redirect('/login');
+});
 
 // Nos regresaria las tareas guardadas en la BD con el método find(). Una vez obtenidas las tareas las regresamos a la pagina principal.
-app.get('/', async function(req,res) {
+app.get('/', verify, async function(req,res) {
 	var tasks = await Task.find();
 	console.log(tasks);
 	
